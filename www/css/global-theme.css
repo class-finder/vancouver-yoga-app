@@ -1,0 +1,39 @@
+body {
+    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-size: 12pt;
+}
+
+.crown-chakra {
+    background-color: #cc7dff;
+    color: #f7f7f7;
+}
+
+.temple-chakra {
+    background-color: #8091ff;
+    color: #f7f7f7;
+}
+
+.throat-chakra {
+    background-color: #80dedf;
+    color: #f7f7f7;
+}
+
+.heart-chakra {
+    background-color: #80ff97;
+    color: #f7f7f7;
+}
+
+.solar-plexus-chakra {
+    background-color: #fffa80;
+    color: #f7f7f7;
+}
+
+.sacral-chakra {
+    background-color: #8091ff;
+    color: #f7f7f7;
+}
+
+.root-chakra {
+    background-color: #ff8080;
+    color: #f7f7f7;
+}
