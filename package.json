@@ -1,0 +1,10 @@
+{
+  "name": "vancouver-yoga-server",
+  "description": "A static server for the Vancouver Yoga dev environment",
+  "author": "Toby Sullivan <tobyjsullivan@gmail.com>",
+  "dependencies": {
+    "serve-static": ">= 1.7.1",
+    "connect": ">= 3.3.3"
+  },
+  "engine": "node 0.10.32"
+}
