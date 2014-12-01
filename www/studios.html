@@ -1,0 +1,22 @@
+<div class="studios">
+    <div class="title-bar crown-chakra">
+        <h1>Hatha studios</h1>
+        <p>The following Vancouver yoga studios offer Hatha classes. Check out their websites to find a class that works for you.</p>
+    </div>
+    <div ng-repeat="studio in studioCtrl.studios">
+        <div class="studio-photo pull-right">
+            <img ng-src="{{studio.photo}}" ng-show="studio.photo" />
+        </div>
+        <div class="studio-listing">
+
+            <p class="studio-name">{{studio.name}}</p>
+            <p class="studio-address">{{studio.address}}</p>
+            <p class="studio-link"><a href="{{studio.website}}">{{studio.website}}</a></p>
+
+        </div>
+    </div>
+
+    <div class="end-of-listing">
+        <p>No more studios</p>
+    </div>
+</div>
