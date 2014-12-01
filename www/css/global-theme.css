@@ -1,6 +1,14 @@
 body {
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', 'Helvetica Neue', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size: 12pt;
+}
+
+a {
+    color: #333;
+}
+
+a:hover {
+    color: #333;
 }
 
 .crown-chakra {

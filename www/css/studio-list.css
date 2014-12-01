@@ -1,17 +1,18 @@
 .title-bar {
 	margin-top: 0;
-	padding: 20px 40px;
-	height: 120px;
+	padding: 10px 40px;
 }
 
 .title-bar h1 {
+	margin-top: 10px;
 	font-size: 28pt;
 	line-height: 1.2em;
+    font-weight: lighter;
 }
 
 .studio-listing {
 	padding: 20px 40px;
-	border-bottom: 1px solid #a0a0a0;
+	border-bottom: 1px solid #c3c3c3;
 	font-size: 12pt;
 	line-height: 1em;
 
@@ -19,7 +20,7 @@
 }
 
 .studio-listing .studio-name {
-	font-weight: bold;
+	font-weight: lighter;
 	font-size: 18pt;
 }
 
