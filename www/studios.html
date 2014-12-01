@@ -1,7 +1,7 @@
 <div class="studios">
     <div class="title-bar crown-chakra">
-        <h1>Hatha studios</h1>
-        <p>The following Vancouver yoga studios offer Hatha classes. Check out their websites to find a class that works for you.</p>
+        <h1>{{studioCtrl.selectedStyle.name}} studios</h1>
+        <p>The following Vancouver yoga studios offer {{studioCtrl.selectedStyle.name}} classes. Check out their websites to find a class that works for you.</p>
     </div>
     <div ng-repeat="studio in studioCtrl.studios">
         <div class="studio-photo pull-right">

@@ -28,16 +28,18 @@
 	var styles = [];
 	var studios = [];
 
-	function getMoodByName(moodName) {
-		if(moodName == undefined) {
+	function findListElementByName(list, elementName) {
+		if(list === undefined || elementName === undefined) {
 			return undefined;
 		}
 
-		for(i = 0; i < moods.length; i++) {
-			if(moodName.toLowerCase() == moods[i].name.toLowerCase()) {
-				return moods[i];
+		for(i = 0; i < list.length; i++) {
+			if(elementName.toLowerCase() == list[i].name.toLowerCase()) {
+				return list[i];
 			}
 		}
+
+		return undefined;
 	};
 
 	app.controller('MoodController', function() {
@@ -49,11 +51,15 @@
 
 		var search = $location.search();
 		var moodParam = search.mood;
-		this.selectedMood = getMoodByName(moodParam);
+		this.selectedMood = findListElementByName(moods, moodParam);
 	});
 
-	app.controller('StudioController', function() {
+	app.controller('StudioController', function($location) {
 		this.studios = studios;
+
+		var search = $location.search();
+		var styleParam = search.style;
+		this.selectedStyle = findListElementByName(styles, styleParam);
 	});
 
 	moods = [
