@@ -21,32 +21,39 @@
 
 	var moods = [
 		{
-			"name": "Safe",
-			"chakra": "crown"
+			"name": "Calm",
+			"chakra": "crown",
+			"styleIntro": "These styles promote calmness."
 		},
 		{
 			"name": "Happy",
-			"chakra": "temple"
+			"chakra": "temple",
+			"styleIntro": "These styles promote happiness."
 		},
 		{
 			"name": "Relaxed",
-			"chakra": "throat"
+			"chakra": "throat",
+			"styleIntro": "These styles promote relaxation."
 		},
 		{
 			"name": "Focused",
-			"chakra": "heart"
+			"chakra": "heart",
+			"styleIntro": "These styles promote focus."
 		},
 		{
 			"name": "Fit",
-			"chakra": "solar-plexus"
+			"chakra": "solar-plexus",
+			"styleIntro": "These styles offer a great workout."
 		},
 		{
 			"name": "Strong",
-			"chakra": "sacral"
+			"chakra": "sacral",
+			"styleIntro": "These styles promote strength and confidence."
 		},
 		{
 			"name": "Enlightened",
-			"chakra": "root"
+			"chakra": "root",
+			"styleIntro": "These styles promote introspection."
 		}
 	];
 

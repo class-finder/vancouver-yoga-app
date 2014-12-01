@@ -1,7 +1,7 @@
 <div class="styles">
     <div class="title-bar {{styleCtrl.selectedMood.chakra}}-chakra">
         <h1>{{styleCtrl.selectedMood.name}} styles</h1>
-        <p>The following styles promote happiness. Choose one that appeals to you.</p>
+        <p>{{styleCtrl.selectedMood.styleIntro}} Choose one that appeals to you.</p>
     </div>
     <div class="containter list-bin">
         <div class="row style-listing" ng-repeat="style in styleCtrl.styles">
