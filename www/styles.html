@@ -1,0 +1,20 @@
+<div class="styles">
+    <div class="title-bar {{styleCtrl.selectedMood.chakra}}-chakra">
+        <h1>{{styleCtrl.selectedMood.name}} styles</h1>
+        <p>The following styles promote happiness. Choose one that appeals to you.</p>
+    </div>
+    <div class="containter list-bin">
+        <div class="row style-listing" ng-repeat="style in styleCtrl.styles">
+            <a href="studio-list.html">
+                <div class="col-xs-12">
+                    <h2>{{style.name}}</h2>
+                    <p>{{style.description}}</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(".backstretch").hide();
+</script>

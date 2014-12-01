@@ -5,9 +5,14 @@
 	  function($routeProvider) {
 	    $routeProvider.
 	      when('/moods', {
-	        templateUrl: 'mood-list.html',
+	        templateUrl: 'moods.html',
 	        controller: 'MoodController',
 	        controllerAs: 'moodCtrl'
+	      }).
+	      when('/styles', {
+	      	templateUrl: 'styles.html',
+	      	controller: 'StyleController',
+	      	controllerAs: 'styleCtrl'
 	      }).
 	      otherwise({
 	        redirectTo: '/moods'
@@ -72,21 +77,12 @@
 		this.moods = moods;
 	});
 
-	app.controller('SelectedMoodController', function($scope, $location) {
-		var getSelectedMood = function() {
-			var search = $location.search();
-
-			var moodParam = search.mood;
-
-			getMoodByName(moodParam);
-		};
-
-		this.selectedMood = getSelectedMood();
-
-	});
-
-	app.controller('StyleController', function() {
+	app.controller('StyleController', function($location) {
 		this.styles = styles;
+
+		var search = $location.search();
+		var moodParam = search.mood;
+		this.selectedMood = getMoodByName(moodParam);
 	});
 
 })();
