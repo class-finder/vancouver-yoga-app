@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="moodService">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -13,66 +13,28 @@
         <title>Vancouver Yoga</title>
     </head>
     <body>
-        <div class="container">
+        <div class="container" ng-controller="MoodController as moodCtrl">
             <div class="row  text-center">
                 <div class="col-md-12">
                     <h1 class="headline"><nobr>How would you</nobr> <nobr>like to feel?</nobr></h1>
                     <p class="tagline">Let's find the right class for you.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-repeat="mood in moodCtrl.moods">
                 <a href="style-list.html">
                     <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn crown-chakra-circle">&nbsp;</div> <span>Safe</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn temple-chakra-circle">&nbsp;</div> <span>Happy</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn throat-chakra-circle">&nbsp;</div> <span>Relaxed</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn heart-chakra-circle">&nbsp;</div> <span>Focused</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn solar-plexus-chakra-circle">&nbsp;</div> <span>Fit</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn sacral-chakra-circle">&nbsp;</div> <span>Strong</span>
-                    </div>
-                </a>
-            </div>
-            <div class="row">
-                <a href="style-list.html">
-                    <div class="col-xs-12 mood-listing">
-                        <div class="circle-btn root-chakra-circle">&nbsp;</div> <span>Enlightened</span>
+                        <div class="circle-btn {{mood.chakra}}-chakra-circle">&nbsp;</div> <span>{{mood.name}}</span>
                     </div>
                 </a>
             </div>
         </div>
         <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/angular.min.js"></script>
         <script src="js/jquery.backstretch.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/mood-service.js"></script>
+
         <script type="text/javascript">
         $.backstretch("img/yoga-bg-02.jpg");
         </script>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="styleService">
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
@@ -17,23 +17,20 @@
             <h1>Happy styles</h1>
             <p>The following styles promote happiness. Choose one that appeals to you.</p>
         </div>
-        <div class="containter list-bin">
-            <div class="row style-listing">
+        <div class="containter list-bin" ng-controller="StyleController as styleCtrl">
+            <div class="row style-listing" ng-repeat="style in styleCtrl.styles">
                 <a href="studio-list.html">
                     <div class="col-xs-12">
-                        <h2>Hatha</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="row style-listing">
-                <a href="studio-list.html">
-                    <div class="col-xs-12">
-                        <h2>Yin</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h2>{{style.name}}</h2>
+                        <p>{{style.description}}</p>
                     </div>
                 </a>
             </div>
         </div>
+        <script src="js/jquery-2.1.1.min.js"></script>
+        <script src="js/angular.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+
+        <script src="js/style-service.js"></script>
     </body>
 </html>
