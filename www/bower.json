@@ -1,0 +1,13 @@
+{
+  "name": "vancouver-yoga",
+  "description": "A yoga app for Vancouver",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.3.0",
+    "jquery": ">= 1.9.0",
+    "bootstrap": "~3.1.1",
+    "angular-route": "~1.3.0",
+    "jquery-backstretch": "2.0.4"
+  }
+}
