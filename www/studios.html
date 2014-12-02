@@ -11,7 +11,7 @@
 
             <p class="studio-name">{{studio.name}}</p>
             <p class="studio-address">{{studio.address}}</p>
-            <p class="studio-link"><a href="#" onclick="window.open('{{studio.website}}', '_system');">{{studio.website}}</a></p>
+            <p class="studio-link"><a href ng-click="studioCtrl.launchWebsite(studio.website);">{{studio.website}}</a></p>
 
         </div>
     </div>

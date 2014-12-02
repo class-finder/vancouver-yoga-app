@@ -2,5 +2,6 @@
 /.cordova
 /node_modules
 /platforms
+/plugins
 /www/bower_components
 

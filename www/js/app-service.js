@@ -60,6 +60,10 @@
 		var search = $location.search();
 		var styleParam = search.style;
 		this.selectedStyle = findListElementByName(styles, styleParam);
+
+		this.launchWebsite = function(websiteUrl) {
+			window.open(websiteUrl, '_system');
+		};
 	});
 
 	moods = [
@@ -102,12 +106,89 @@
 
 	styles = [
 		{
+			"name": "Ashtanga",
+			"description": "Ashtanga is a fast-paced, intense style of yoga. A set series of \
+			poses is performed, always in the same order. This practice is very \
+			physically demanding because of the constant movement from one pose to \
+			the next and the emphasis on daily practice."
+		},
+		{
+			"name": "Bikram",
+			"description": "In a Bikram class, you will sweat like you've never sweated before \
+			as you work your way through a series of 26 poses. A Bikram class always follows \
+			the same sequence."
+		},
+		{
+			"name": "Core",
+			"description": "A dynamic and challenging sequence of postures that synchronizes breath \
+			with movement in order to build strength, balance, and flexibility. Includes targeted \
+			core conditioning designed to increase functional movement and structural alignment."
+		},
+		{
+			"name": "50+",
+			"description": "A gentle option for the older adult (or anyone) who is looking to \
+			increase joint flexibility as well as decrease stress and stiffness in the body."
+		},
+		{
 			"name": "Hatha",
-			"description": "Hatha is good."
+			"description": "Classes described as “hatha” on studio schedules are typically a basic \
+			and classical approach to yogic breathing exercises and postures."
+		},
+		{
+			"name": "Hot Yoga",
+			"description": "Hot yoga is practiced in a 95 to 100 degree room, which allows for a \
+			loosening of tight muscles and profuse sweating, which is thought to be cleansing."
+		},
+		{
+			"name": "Kundalini",
+			"description": "The practice of kundalini yoga features constantly moving, invigorating \
+			poses. The fluidity of the practice is intended to release the kundalini (serpent) \
+			energy in your body."
+		},
+		{
+			"name": "Laughter",
+			"description": "Laughter yoga (Hasyayoga) is a practice involving prolonged voluntary \
+			laughter. Laughter yoga is based on the belief that voluntary laughter provides the same \
+			physiological and psychological benefits as spontaneous laughter. Laughter yoga is done \
+			in groups, with eye contact and playfulness between participants."
+		},
+		{
+			"name": "Moksha",
+			"description": "Moksha hot yoga classes are based on a series of 40 poses done in a heated \
+			room. The studios are expected to adhere to environmentally conscious building and cleaning \
+			standards."
+		},
+		{
+			"name": "Pilates",
+			"description": "Pilates is a system of exercises using special apparatus, designed to improve \
+			physical strength, flexibility, and posture, and enhance mental awareness."
+		},
+		{
+			"name": "Restorative",
+			"description": "Restorative yoga is a delicious way to way to relax and soothe frayed nerves. \
+			Restorative classes use bolsters, blankets, and blocks to prop students in passive poses so \
+			that the body can experience the benefits of a pose without having to exert any effort. A \
+			good restorative class is more rejuvenating than a nap."
+		},
+		{
+			"name": "Qigong",
+			"description": "Qigong is a Chinese system of physical exercises and breathing control related to tai chi."
+		},
+		{
+			"name": "Vinyasa",
+			"description": "Vinyasa classes, sometimes called \"Power\" or \"Flow\", are known for \
+			their fluid, movement-intensive practices. \
+			Vinyasa teachers choreograph their classes to smoothly transition from pose to pose, \
+			and often play music to keep things lively. The intensity of the practice is similar to \
+			Ashtanga, but no two vinyasa classes are the same."
 		},
 		{
 			"name": "Yin",
-			"description": "Yin is centering."
+			"description": "A quiet, meditative yoga practice, also called taoist yoga. Yin focuses \
+			on lengthening connective tissues and is meant to complement yang yoga — your muscle-forming \
+			Anusara, ashtanga, Iyengar, or what have you. Yin poses are passive, meaning you’re supposed \
+			to relax muscles and let gravity do the work. And they’re long — you’ll practice patience \
+			here too."
 		}
 	];
 
