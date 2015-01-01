@@ -19,6 +19,11 @@
 	      	controller: 'StudioController',
 	      	controllerAs: 'studioCtrl'
 	      }).
+	      when('/classes', {
+	      	templateUrl: 'classes.html',
+	      	controller: 'ClassController',
+	      	controllerAs: 'classCtrl'
+	      }).
 	      otherwise({
 	        redirectTo: '/moods'
 	      });
@@ -71,6 +76,21 @@
 		var search = $location.search();
 		var styleParam = search.style;
 		this.selectedStyle = findListElementByName(styles, styleParam);
+
+		this.launchWebsite = function(websiteUrl) {
+			window.open(websiteUrl, '_system');
+		};
+	});
+
+	app.controller('ClassController', function($location) {		
+		var search = $location.search();
+		var styleParam = search.style;
+		this.selectedStyle = findListElementByName(styles, styleParam);
+
+		this.classes = classes.filter(function(elem) {
+			return elem.style == this.selectedStyle.name;
+		}.bind(this));
+
 
 		this.launchWebsite = function(websiteUrl) {
 			window.open(websiteUrl, '_system');
@@ -1043,6 +1063,20 @@
 			"phone": "(604) 362-3434",
 			"website": "yoguy.ca",
 			"photo": null
+		}
+	];
+
+	classes = [
+		{
+			"name": "Hatha All Levels",
+			"style": "Hatha",
+			"studio": {
+				"name": "Just Yoga",
+				"address": "53 E Broadway",
+				"website": "http://justyoga.ca",
+				"phone": "(604) 709-9642",
+				"photo": "img/studios/just_yoga_small.jpg"
+			}
 		}
 	];
 })();

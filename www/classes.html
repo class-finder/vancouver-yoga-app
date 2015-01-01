@@ -1,0 +1,27 @@
+<div class="classes">
+    <div class="title-bar crown-chakra">
+        <h1>{{classCtrl.selectedStyle.name}} classes</h1>
+        <p>Here are some {{studioCtrl.selectedStyle.name}} classes near you. Check studio websites for details about attending.</p>
+    </div>
+    <div ng-repeat="class in classCtrl.classes">
+        <div class="studio-photo pull-right">
+            <img ng-src="{{class.studio.photo}}" ng-show="class.studio.photo" />
+        </div>
+        <div class="class-listing clearfix">
+            <div class="class-details pull-left">
+                <p class="class-name">{{class.name}}</p>
+                <p class="class-time">12:45 PM, Tuesdays</p>
+
+            </div>
+            <div class="studio-details pull-left">
+                <p class="studio-name">{{class.studio.name}}</p>
+                <p class="studio-address">{{class.studio.address}}</p>
+                <p class="studio-link"><a href ng-click="classCtrl.launchWebsite(class.studio.website);">{{class.studio.website}}</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="end-of-listing">
+        <p>No more studios</p>
+    </div>
+</div>
