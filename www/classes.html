@@ -10,12 +10,12 @@
         <div class="class-listing clearfix">
             <div class="class-details pull-left">
                 <p class="class-name">{{class.name}}</p>
-                <p class="class-time">12:45 PM, Tuesdays</p>
+                <p class="class-time">{{class.time}}, {{class.day}}</p>
 
             </div>
             <div class="studio-details pull-left">
                 <p class="studio-name">{{class.studio.name}}</p>
-                <p class="studio-address">{{class.studio.address}}</p>
+                <p class="studio-address">{{class.studio.address.street}}</p>
                 <p class="studio-link"><a href ng-click="classCtrl.launchWebsite(class.studio.website);">{{class.studio.website}}</a></p>
             </div>
         </div>
