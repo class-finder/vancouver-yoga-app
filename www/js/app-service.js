@@ -142,7 +142,10 @@
         }
 
         return elem;
-      }, this);
+      }, this).sort(function(a, b) {
+        // localeCompare works for comparison since time is a string representation of 24-hour time which is cannonical.
+        return a.time.localeCompare(b.time);
+      });
     }.bind(this, classes);
 
     this.refreshClasses();
