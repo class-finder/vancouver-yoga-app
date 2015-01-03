@@ -33,6 +33,15 @@
   var styles = [];
   var studios = [];
 
+  var weekday = new Array(7);
+  weekday[0]=  "sun";
+  weekday[1] = "mon";
+  weekday[2] = "tue";
+  weekday[3] = "wed";
+  weekday[4] = "thu";
+  weekday[5] = "fri";
+  weekday[6] = "sat";
+
   function findListElementByName(list, elementName) {
     if(list === undefined || elementName === undefined) {
       return undefined;
@@ -100,37 +109,43 @@
     var styleParam = search.style;
     this.selectedStyle = findListElementByName(styles, styleParam);
 
-    this.classes = classes.filter(function(elem) {
-      return elem.style === this.selectedStyle.name;
-    }, this).map(function(elem) {
-      elem.studio = this.findStudioById(elem.studioId);
+    this.dayFilter = weekday[new Date().getDay()];
 
-      switch(elem.day) {
-        case "sun":
-          elem.day = "Sunday";
-          break;
-        case "mon":
-          elem.day = "Monday";
-          break;
-        case "tue":
-          elem.day = "Tuesday";
-          break;
-        case "wed":
-          elem.day = "Wednesday";
-          break;
-        case "thu":
-          elem.day = "Thursday";
-          break;
-        case "fri":
-          elem.day = "Friday";
-          break;
-        case "sat":
-          elem.day = "Saturday";
-          break;
-      }
+    this.refreshClasses = function(classes) {
+      this.classes = classes.filter(function(elem) {
+        return elem.day === this.dayFilter && elem.style === this.selectedStyle.name;
+      }, this).map(function(elem) {
+        elem.studio = this.findStudioById(elem.studioId);
 
-      return elem;
-    }, this);
+        switch(elem.day) {
+          case "sun":
+            elem.day = "Sunday";
+            break;
+          case "mon":
+            elem.day = "Monday";
+            break;
+          case "tue":
+            elem.day = "Tuesday";
+            break;
+          case "wed":
+            elem.day = "Wednesday";
+            break;
+          case "thu":
+            elem.day = "Thursday";
+            break;
+          case "fri":
+            elem.day = "Friday";
+            break;
+          case "sat":
+            elem.day = "Saturday";
+            break;
+        }
+
+        return elem;
+      }, this);
+    }.bind(this, classes);
+
+    this.refreshClasses();
 
     this.launchWebsite = function(websiteUrl) {
       window.open(websiteUrl, '_system');
