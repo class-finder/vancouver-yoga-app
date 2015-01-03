@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('appService', ['ngRoute']);
+  var app = angular.module('appService', ['ngRoute', 'classFilters']);
 
   app.config(['$routeProvider',
     function($routeProvider) {
@@ -116,31 +116,6 @@
         return elem.day === this.dayFilter && elem.style === this.selectedStyle.name;
       }, this).map(function(elem) {
         elem.studio = this.findStudioById(elem.studioId);
-
-        switch(elem.day) {
-          case "sun":
-            elem.day = "Sunday";
-            break;
-          case "mon":
-            elem.day = "Monday";
-            break;
-          case "tue":
-            elem.day = "Tuesday";
-            break;
-          case "wed":
-            elem.day = "Wednesday";
-            break;
-          case "thu":
-            elem.day = "Thursday";
-            break;
-          case "fri":
-            elem.day = "Friday";
-            break;
-          case "sat":
-            elem.day = "Saturday";
-            break;
-        }
-
         return elem;
       }, this).sort(function(a, b) {
         // localeCompare works for comparison since time is a string representation of 24-hour time which is cannonical.
