@@ -1,6 +1,21 @@
 (function() {
   var app = angular.module('appService', ['ngRoute', 'classFilters']);
 
+  var api = 'http://api.indieclasses.com/v1';
+
+  var moods = [];
+  var styles = [];
+  var studios = [];
+
+  var weekday = new Array(7);
+  weekday[0]=  "sun";
+  weekday[1] = "mon";
+  weekday[2] = "tue";
+  weekday[3] = "wed";
+  weekday[4] = "thu";
+  weekday[5] = "fri";
+  weekday[6] = "sat";
+
   app.config(['$routeProvider',
     function($routeProvider) {
       $routeProvider.
@@ -29,19 +44,6 @@
         });
     }]);
 
-  var moods = [];
-  var styles = [];
-  var studios = [];
-
-  var weekday = new Array(7);
-  weekday[0]=  "sun";
-  weekday[1] = "mon";
-  weekday[2] = "tue";
-  weekday[3] = "wed";
-  weekday[4] = "thu";
-  weekday[5] = "fri";
-  weekday[6] = "sat";
-
   function findListElementByName(list, elementName) {
     if(list === undefined || elementName === undefined) {
       return undefined;
@@ -59,13 +61,13 @@
   app.controller('MoodController', function($scope, $http) {
     this.moods = moods;
     
-    $http.get('https://api.indieclasses.com/v1/studios').success(function(data, status) {
+    $http.get(api+'/studios').success(function(data, status) {
       studios = data.data;
     }).error(function(data, status) {
       alert("Error loading classes. Please make sure this device is connected to the internet. Code: "+status);
     });
     
-    $http.get('https://api.indieclasses.com/v1/events').success(function(data, status) {
+    $http.get(api+'/events').success(function(data, status) {
       classes = data.data;
     }).error(function(data, status) {
       alert("Error loading classes. Please make sure this device is connected to the internet. Code: "+status);
