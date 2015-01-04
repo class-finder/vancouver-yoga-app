@@ -3,7 +3,7 @@
         <h1>{{classCtrl.selectedStyle.name}} classes</h1>
         <p>Here are some {{studioCtrl.selectedStyle.name}} classes near you. Check studio websites for details about attending.</p>
         <p>Showing classes for: 
-            <select ng-model="classCtrl.dayFilter" ng-change="classCtrl.refreshClasses();">
+            <select class="form-control" ng-model="classCtrl.dayFilter" ng-change="classCtrl.refreshClasses();">
                 <option value="sun">Sunday</option>
                 <option value="mon">Monday</option>
                 <option value="tue">Tuesday</option>
