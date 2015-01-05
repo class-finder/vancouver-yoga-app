@@ -5,7 +5,11 @@
 
   var moods = [];
   var styles = [];
-  var studios = [];
+
+  var serverData = {
+    studios: [],
+    classes: []
+  };
 
   var weekday = new Array(7);
   weekday[0]=  "sun";
@@ -15,6 +19,8 @@
   weekday[4] = "thu";
   weekday[5] = "fri";
   weekday[6] = "sat";
+
+  var localCacheExpiry = 86400000; // 24 hours in milliseconds
 
   app.config(['$routeProvider',
     function($routeProvider) {
@@ -44,6 +50,60 @@
         });
     }]);
 
+  function loadServerSideData($http, dataEndpoint, cacheKey) {
+    return new Promise(function(resolve, reject) {
+      var lastFetchCacheKey = cacheKey+'_lastFetch';
+
+      var cacheExpired = localStorage.getItem(lastFetchCacheKey) == null || new Date(localStorage.getItem(lastFetchCacheKey) + localCacheExpiry) < new Date();
+
+      if(cacheExpired || localStorage.getItem(cacheKey) == null) {
+        // Fetch resource from server
+        $http.get(api+dataEndpoint).success(function(data) {
+          // Cache results
+          localStorage.setItem(cacheKey, JSON.stringify(data.data));
+          var now = new Date();
+          localStorage.setItem(lastFetchCacheKey, now.getTime());
+
+          resolve(data.data);
+        }).error(function(data, status) {
+          // Fall back to cached item if there is one
+          if(localStorage.getItem(cacheKey) != null) {
+            fallbackVal = JSON.parse(localStorage.getItem(cacheKey));
+            resolve(fallbackVal);
+          }
+          reject(status)
+        });
+      } else {
+        var cached = JSON.parse(localStorage.getItem(cacheKey));
+        resolve(cached);
+      }
+    });
+  }
+
+  function loadStudioData($http) {
+    var promise = loadServerSideData($http, '/studios', 'studiosJson')
+
+    promise.then(function(data) {
+      serverData.studios = data;
+    }, function(error) {
+      alert("Error loading studios. Please make sure this device is connected to the internet. Code: "+error);
+    });
+
+    return promise;
+  }
+
+  function loadClassData($http) {
+    var promise = loadServerSideData($http, '/events', 'classesJson')
+
+    promise.then(function(data) {
+      serverData.classes = data;
+    }, function(error) {
+      alert("Error loading studios. Please make sure this device is connected to the internet. Code: "+error);
+    });
+
+    return promise;
+  }
+
   function findListElementByName(list, elementName) {
     if(list === undefined || elementName === undefined) {
       return undefined;
@@ -58,23 +118,24 @@
     return undefined;
   };
 
-  app.controller('MoodController', function($scope, $http) {
+  function loadServerData($http) {
+    var all = [
+      loadStudioData($http),
+      loadClassData($http)
+    ];
+
+    return Promise.all(all);
+  }
+
+  app.controller('MoodController', function($http) {
+    loadServerData($http);
+
     this.moods = moods;
-    
-    $http.get(api+'/studios').success(function(data, status) {
-      studios = data.data;
-    }).error(function(data, status) {
-      alert("Error loading classes. Please make sure this device is connected to the internet. Code: "+status);
-    });
-    
-    $http.get(api+'/events').success(function(data, status) {
-      classes = data.data;
-    }).error(function(data, status) {
-      alert("Error loading classes. Please make sure this device is connected to the internet. Code: "+status);
-    });
   });
 
-  app.controller('StyleController', function($location) {
+  app.controller('StyleController', function($location, $http) {
+    loadServerData($http);
+
     this.styles = styles;
 
     var search = $location.search();
@@ -93,8 +154,10 @@
     }
   });
 
-  app.controller('StudioController', function($location) {
-    this.studios = studios;
+  app.controller('StudioController', function($location, $http) {
+    loadServerData($http);
+
+    this.serverData = serverData;
 
     var search = $location.search();
     var styleParam = search.style;
@@ -105,11 +168,11 @@
     };
   });
 
-  app.controller('ClassController', function($location) {
-    this.studios = studios;
+  app.controller('ClassController', function($location, $http, $scope) {
+    this.serverData = serverData;
 
     this.findStudioById = function(studioId) {
-      var matching = this.studios.filter(function(elem) {
+      var matching = this.serverData.studios.filter(function(elem) {
         return elem.studioId === studioId;
       }, this);
 
@@ -125,8 +188,9 @@
 
     this.dayFilter = weekday[new Date().getDay()];
 
-    this.refreshClasses = function(classes) {
-      this.classes = classes.filter(function(elem) {
+    this.classes = [];
+    this.refreshClasses = function(serverData) {
+      this.classes = serverData.classes.filter(function(elem) {
         return elem.day === this.dayFilter && elem.style === this.selectedStyle.name;
       }, this).map(function(elem) {
         elem.studio = this.findStudioById(elem.studioId);
@@ -135,9 +199,13 @@
         // localeCompare works for comparison since time is a string representation of 24-hour time which is cannonical.
         return a.time.localeCompare(b.time);
       });
-    }.bind(this, classes);
+    }.bind(this, serverData);
 
-    this.refreshClasses();
+    loadServerData($http).then(function() {
+      $scope.$apply(function() {
+        this.refreshClasses();
+      }.bind(this));
+    }.bind(this));
 
     this.launchWebsite = function(websiteUrl) {
       window.open(websiteUrl, '_system');
