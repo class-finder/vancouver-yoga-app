@@ -27,6 +27,11 @@
             <div class="studio-details pull-left">
                 <p class="studio-name">{{class.studio.name}}</p>
                 <p class="studio-address">{{class.studio.address.street}}</p>
+                <p class="studio-link">
+                    <a href ng-click="classCtrl.launchMap(class.studio.name, class.studio.address.street, 'Vancouver', 'British Columbia', 'Canada');">
+                        View in Google Maps
+                    </a>
+                </p>
                 <p class="studio-link"><a href ng-click="classCtrl.launchWebsite(class.studio.website);">{{class.studio.website}}</a></p>
             </div>
         </div>

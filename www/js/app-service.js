@@ -207,6 +207,11 @@
       }.bind(this));
     }.bind(this));
 
+    this.launchMap = function(studioName, street, city, province, country) {
+      var address = encodeURIComponent(studioName + ', ' + street + ', ' + city +', ' + province + ', ' +country);
+      window.open("http://maps.google.com/?q=" + address, "_system");
+    };
+
     this.launchWebsite = function(websiteUrl) {
       window.open(websiteUrl, '_system');
     };
